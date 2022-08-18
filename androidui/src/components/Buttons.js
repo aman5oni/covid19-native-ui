@@ -54,4 +54,5 @@ const styles = StyleSheet.create({
         marginLeft:90
     }
 })
+
 export default Buttons;
