@@ -30,8 +30,9 @@ const DATA = [
     number: "838 456"
   }
 ];
-export default class Home extends Component {
-  renderCard(item) {
+
+const Home = ({ navigation }) => {
+  const renderCard = (item) => {
     return (
       <View key={item.id} style={styles.cardContainer}>
         <View style={styles.card}>
@@ -52,89 +53,85 @@ export default class Home extends Component {
         </View>
       </View>
     );
-  }
+  };
 
-  renderNoMoreCards() {
+  const renderNoMoreCards = () => {
     return (
       <View title="All Domne!">
         <Text style={styles.noCard}>NO MORE CARDS HERE</Text>
         <Button backgroundColor="#03A9F4" title="Get more!" />
       </View>
     );
-  }
+  };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <ImageBackground
-          source={require("../images/Map.jpg")}
-          style={styles.map}
-        >
-          <View style={styles.col}>
-            <View style={{ width: "50%" }}>
-              <Icon name="md-remove" color="#FFF" size={26} />
-              <Icon
-                name="md-remove"
-                color="#FFF"
-                size={26}
-                style={styles.minusIcon}
-              />
-            </View>
-            <View style={styles.avatarContainer}>
-              <Image
-                source={require("../images/Profile.jpeg")}
-                style={styles.avatar}
-              />
-            </View>
+  return (
+    <View style={styles.container}>
+      <ImageBackground source={require("../images/Map.jpg")} style={styles.map}>
+        <View style={styles.col}>
+          <View style={{ width: "50%" }}>
+            <Icon name="md-remove" color="#FFF" size={26} />
+            <Icon
+              name="md-remove"
+              color="#FFF"
+              size={26}
+              style={styles.minusIcon}
+            />
           </View>
-          <Text style={styles.textDash}>CORONA DASH</Text>
-
-          <View style={styles.colContainer}>
-            <Text style={styles.textGlobal}>GLOBAL</Text>
-            <Text style={styles.textRussia}>RUSSIA</Text>
-            <View style={styles.reloadContainer}>
-              <Icon name="md-refresh" size={24} color="red" />
-            </View>
+          <View style={styles.avatarContainer}>
+            <Image
+              source={require("../images/Profile.jpeg")}
+              style={styles.avatar}
+            />
           </View>
-        </ImageBackground>
-        <Deck
-          data={DATA}
-          renderCard={this.renderCard}
-          renderNoMoreCards={this.renderNoMoreCards}
-        />
-        <ScrollView
-          style={{ marginTop: 170 }}
-          showsHorizontalScrollIndicator={false}
-          horizontal
-        >
-          <Cards
-            onPress={() => this.props.navigation.navigate("Detail")}
-            icon="md-pulse"
-            title="TOTAL CASES"
-            bg="red"
-            number="113 329"
-          />
-          <Cards
-            icon="ios-git-network"
-            title="RECOVERED"
-            bg="#FFF"
-            number="442 329"
-          />
-          <Cards
-            icon="ios-heart-dislike"
-            title="DEATH CASES"
-            bg="#FFF"
-            number="113 329"
-          />
-        </ScrollView>
-        <View style={{ marginBottom: 34 }}>
-          <Buttons name="ASYMPTOMATIC" number="1 778" />
-          <Buttons name="SYMPTOMATIC" number="1 578" />
         </View>
+        <Text style={styles.textDash}>CORONA DASH</Text>
+
+        <View style={styles.colContainer}>
+          <Text style={styles.textGlobal}>GLOBAL</Text>
+          <Text style={styles.textRussia}>RUSSIA</Text>
+          <View style={styles.reloadContainer}>
+            <Icon name="md-refresh" size={24} color="red" />
+          </View>
+        </View>
+      </ImageBackground>
+      <Deck
+        data={DATA}
+        renderCard={renderCard}
+        renderNoMoreCards={renderNoMoreCards}
+      />
+      <ScrollView
+        style={{ marginTop: 170 }}
+        showsHorizontalScrollIndicator={false}
+        horizontal
+      >
+        <Cards
+          onPress={() => navigation.navigate("Detail")}
+          icon="md-pulse"
+          title="TOTAL CASES"
+          bg="red"
+          number="113 329"
+        />
+        <Cards
+          icon="ios-git-network"
+          title="RECOVERED"
+          bg="#FFF"
+          number="442 329"
+        />
+        <Cards
+          icon="ios-heart-dislike"
+          title="DEATH CASES"
+          bg="#FFF"
+          number="113 329"
+        />
+      </ScrollView>
+      <View style={{ marginBottom: 34 }}>
+        <Buttons name="ASYMPTOMATIC" number="1 778" />
+        <Buttons name="SYMPTOMATIC" number="1 578" />
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -240,3 +237,5 @@ const styles = StyleSheet.create({
     marginLeft: 50
   }
 });
+
+export default Home;
